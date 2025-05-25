@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopAjio</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  
+</head>
+<body class="bg-gray-100">
+ 
+  <!-- Main Header -->
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+      <!-- Left: Logo + Nav -->
+      <div class="flex items-center space-x-8">
+        <!-- Logo -->
+        <a href="onlineshop.html">
+          <img src="https://assets.ajio.com/static/img/Ajio-Logo.svg" alt="Ajio Logo" class="h-8">
+        </a>
+  
+        <!-- Navigation -->
+        <nav class="hidden md:flex space-x-6 text-sm font-semibold text-gray-700">
+          <div class="relative group">
+            <a href="men.html" class="hover:text-blue-600">MEN</a>
+            <!-- Dropdown -->
+            <div class="absolute hidden group-hover:block bg-white shadow p-4 mt-2 rounded text-sm">
+              <a href="men.html" class="block hover:text-blue-500">Clothing</a>
+              <a href="men.html" class="block hover:text-blue-500">Footwear</a>
+              <a href="men.html" class="block hover:text-blue-500">Accessories</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <a href="women.html" class="hover:text-blue-600">WOMEN</a>
+            <div class="absolute hidden group-hover:block bg-white shadow p-4 mt-2 rounded text-sm">
+              <a href="women.html" class="block hover:text-blue-500">Kurtis</a>
+              <a href="women.html" class="block hover:text-blue-500">Jeans</a>
+              <a href="women.html" class="block hover:text-blue-500">Sarees</a>
+            </div>
+          </div>
+          <a href="kids.html" class="hover:text-blue-600">KIDS</a>
+          <a href="beauty.html" class="hover:text-blue-600">BEAUTY</a>
+          <a href="HOME_&_KITCHEN.HTML" class="hover:text-blue-600">Home & Kitchen</a>
+        </nav>
+      </div>
+  
+      <!-- Middle: Search Bar -->
+      <div class="flex-1 mx-4 hidden md:block">
+        <input type="text" placeholder="Search AJIO..." class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+      </div>
+  
+      <!-- Right: Cart -->
+      <!-- Right: Auth + Cart -->
+<div class="flex items-center space-x-4">
+  <a href="login.html" class="text-sm font-medium text-blue-600 hover:underline">Login</a>
+  <a href="register.html" class="text-sm font-medium text-blue-600 hover:underline">Register</a>
+  <button id="cart-button" class="bg-blue-500 text-white px-4 py-2 rounded" onclick="window.location.href='cart.html'">
+    Cart (<span id="cart-count">0</span>)
+  </button>
+  <!-- Mobile Menu Toggle -->
+  <button id="mobile-menu-button" class="md:hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+</div>
+<script>
+  // Check if user is logged in
+  const user = localStorage.getItem("user");
+  if (!user) {
+    alert("You must be logged in to view this page.");
+    window.location.href = "login.html";
+  }
+   const loggedInUser = JSON.parse(localStorage.getItem("user"));
+  if (loggedInUser) {
+    document.write(`<span class="text-sm text-gray-700 font-medium">Welcome, ${loggedInUser.name}</span>`);
+  }
+</script>
+
+
+    <!-- <div class="carousel">
+      <div class="movie">
+          <img src="" alt="Movie 1">
+      </div>
+      <div class="movie">
+        <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+          <img src="https://i.pinimg.com/originals/60/fb/47/60fb476c0cbf36633eb43511cd747a7f.jpg" alt="Shirt" class="rounded mb-2">
+          <h3 class="font-medium text-gray-800">Casual Shirt</h3>
+          <p class="text-sm text-gray-600">₹899</p>
+          <p class="text-yellow-500 text-sm">★★★☆☆</p>
+          <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded">Add to Cart</button>
+        </div>
+      </div>
+      <div class="movie">
+        <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+          <img src="https://image.hm.com/assets/hm/45/bb/45bbd5b9d7113eb1505e8d60864f08d5999e6b79.jpg?imwidth=1260" alt="Jeans" class="rounded mb-2">
+          <h3 class="font-medium text-gray-800">High-Waist Jeans</h3>
+          <p class="text-sm text-gray-600">₹1199</p>
+          <p class="text-yellow-500 text-sm">★★★☆☆</p>
+          <button class="mt-2 bg-pink-500 text-white px-3 py-1 rounded">Add to Cart</button>
+        </div>      </div>
+      <div class="movie">
+        <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+          <img src="https://th.bing.com/th/id/OIP.5f5pGI0OJf--LRYL1O_kVgHaJ3?w=202&h=269&c=7&r=0&o=5&cb=iwc1&dpr=1.5&pid=1.7" alt="Frock" class="rounded mb-2">
+          <h3 class="font-medium text-gray-800">Floral Frock</h3>
+          <p class="text-sm text-gray-600">₹799</p>
+          <p class="text-yellow-500 text-sm">★★★☆☆</p>
+          <button class="mt-2 bg-yellow-500 text-white px-3 py-1 rounded">Add to Cart</button>
+        </div>      </div>
+      <div class="movie">
+        <img src="https://th.bing.com/th/id/OIP.-SHy8kwHARwv_JtEY0uUEwHaIa?w=159&h=182&c=7&r=0&o=5&cb=iwc1&dpr=1.5&pid=1.7" alt="Foundation" class="rounded mb-2">
+        <h3 class="font-medium text-gray-800">Liquid Foundation</h3>
+        <p class="text-sm text-gray-600">₹899</p>
+        <p class="text-yellow-500 text-sm">★★★★☆</p>
+        <button class="mt-2 bg-pink-600 text-white px-3 py-1 rounded">Add to Cart</button>      </div>  -->
+  
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+      <nav class="flex flex-col space-y-2 text-gray-700 text-sm font-semibold">
+        <a href="men.html" class="hover:text-blue-500">MEN</a>
+        <a href="women.html" class="hover:text-blue-500">WOMEN</a>
+        <a href="kids.html" class="hover:text-blue-500">KIDS</a>
+        <a href="beauty.html" class="hover:text-blue-500">BEAUTY</a>
+        <a href="HOME_&_KITCHEN.HTML" class="hover:text-blue-500">Home & Kitchen</a>
+      </nav>
+  
+      <div class="mt-4">
+        <input type="text" placeholder="Search AJIO..." class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+      </div>
+    </div>
+  </header>
+  
+  <!-- <main class="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="product-list">
+    Products will be injected here -->
+  <!-- </main> -->
+    <!-- Top Promotional Banner -->
+<section class="max-w-7xl mx-auto p-4">
+  <img 
+    src="https://assets.ajio.com/cms/AJIO/MOBILE/M-AASS-UHP-1.0-S1-MAINBANNER-P1-allstarsale-06032025.gif" 
+    alt="Sale Banner"
+    class="w-full rounded-lg shadow-lg"
+  >
+</section>
+<main>
+     <main class="p-6">
+    <h2 class="text-xl font-semibold text-gray-700 mb-4">Trending in WOMEN</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+      <!-- Product Card Template -->
+      <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+        <div class="relative">
+          <img src="https://via.placeholder.com/300x200?text=Kurti" alt="Kurti" class="rounded mb-2">
+          <span class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">-30%</span>
+        </div>
+        <h3 class="font-medium text-gray-800">Floral Printed Kurti</h3>
+        <p class="text-sm text-gray-600">₹999 <s class="text-gray-400">₹1399</s></p>
+        <p class="text-yellow-500 text-sm">★★★★☆</p>
+        <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart" data-id="1" data-name="Floral Printed Kurti" data-price="999" data-image="https://via.placeholder.com/300x200?text=Kurti">Add to Cart</button>      </div>
+
+      <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+        <img src="https://via.placeholder.com/300x200?text=Dress" alt="Dress" class="rounded mb-2">
+        <h3 class="font-medium text-gray-800">Fit & Flare Dress</h3>
+        <p class="text-sm text-gray-600">₹1499</p>
+        <p class="text-yellow-500 text-sm">★★★★★</p>
+        <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart" data-id="2" data-name="Fit & Flare Dress" data-price="1499" data-image="https://via.placeholder.com/300x200?text=Dress">Add to Cart</button>
+      </div>
+
+      <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+        <img src="https://via.placeholder.com/300x200?text=Top" alt="Top" class="rounded mb-2">
+        <h3 class="font-medium text-gray-800">Puff Sleeve Top</h3>
+        <p class="text-sm text-gray-600">₹699</p>
+        <p class="text-yellow-500 text-sm">★★★★☆</p>
+        <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart" data-id="3" data-name="Puff Sleeve Top" data-price="699" data-image="https://via.placeholder.com/300x200?text=Top">Add to Cart</button>
+      </div>
+
+      <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+        <img src="https://via.placeholder.com/300x200?text=Jeans" alt="Jeans" class="rounded mb-2">
+        <h3 class="font-medium text-gray-800">High-Waist Jeans</h3>
+        <p class="text-sm text-gray-600">₹1199</p>
+        <p class="text-yellow-500 text-sm">★★★☆☆</p>
+      <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart" data-id="4" data-name="High-Waist Jeans" data-price="1199" data-image="https://via.placeholder.com/300x200?text=Jeans">Add to Cart</button>
+      </div>
+
+      <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Eye+Liner" alt="Eye Liner" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Waterproof Eye Liner</h3>
+  <p class="text-sm text-gray-600">₹399</p>
+  <p class="text-yellow-500 text-sm">★★★★★</p>
+  <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="5"
+          data-name="Waterproof Eye Liner"
+          data-price="399"
+          data-image="https://via.placeholder.com/300x200?text=Eye+Liner">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Face+Cream" alt="Face Cream" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Hydrating Face Cream</h3>
+  <p class="text-sm text-gray-600">₹699</p>
+  <p class="text-yellow-500 text-sm">★★★★☆</p>
+  <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="6"
+          data-name="Hydrating Face Cream"
+          data-price="699"
+          data-image="https://via.placeholder.com/300x200?text=Face+Cream">
+    Add to Cart
+  </button>
+</div>
+
+      <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <div class="relative">
+    <img src="https://via.placeholder.com/300x200?text=Men's+Jeans" alt="Men's Jeans" class="rounded mb-2">
+  </div>
+  <h3 class="font-medium text-gray-800">Slim Fit Jeans</h3>
+  <p class="text-sm text-gray-600">₹1299</p>
+  <p class="text-yellow-500 text-sm">★★★★★</p>
+  <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="2"
+          data-name="Slim Fit Jeans"
+          data-price="1299"
+          data-image="https://via.placeholder.com/300x200?text=Men's+Jeans">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <div class="relative">
+    <img src="https://via.placeholder.com/300x200?text=Men's+Jacket" alt="Men's Jacket" class="rounded mb-2">
+  </div>
+  <h3 class="font-medium text-gray-800">Leather Jacket</h3>
+  <p class="text-sm text-gray-600">₹2999</p>
+  <p class="text-yellow-500 text-sm">★★★★☆</p>
+  <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="3"
+          data-name="Leather Jacket"
+          data-price="2999"
+          data-image="https://via.placeholder.com/300x200?text=Men's+Jacket">
+    Add to Cart
+  </button>
+</div>
+
+    </div>
+  </main>
+  <main class="p-6">
+    <h2 class="text-xl font-semibold text-gray-700 mb-4">Trending in MEN</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+      <!-- Product Card Template -->
+      <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <div class="relative"> 
+
+    <img src="https://via.placeholder.com/300x200?text=Men's+Shirt" alt="Men's Shirt" class="rounded mb-2">
+    <span class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">-20%</span>
+  </div>
+  <h3 class="font-medium text-gray-800">Casual Men's Shirt</h3>
+  <p class="text-sm text-gray-600">₹899 <s class="text-gray-400">₹1124</s></p>
+  <p class="text-yellow-500 text-sm">★★★★☆</p>
+  <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="1"
+          data-name="Casual Men's Shirt"
+          data-price="899"
+          data-image="https://via.placeholder.com/300x200?text=Men's+Shirt">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <div class="relative">
+    <img src="https://via.placeholder.com/300x200?text=Men's+Jeans" alt="Men's Jeans" class="rounded mb-2">
+  </div>
+  <h3 class="font-medium text-gray-800">Slim Fit Jeans</h3>
+  <p class="text-sm text-gray-600">₹1299</p>
+  <p class="text-yellow-500 text-sm">★★★★★</p>
+  <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="2"
+          data-name="Slim Fit Jeans"
+          data-price="1299"
+          data-image="https://via.placeholder.com/300x200?text=Men's+Jeans">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <div class="relative">
+    <img src="https://via.placeholder.com/300x200?text=Men's+Jacket" alt="Men's Jacket" class="rounded mb-2">
+  </div>
+  <h3 class="font-medium text-gray-800">Leather Jacket</h3>
+  <p class="text-sm text-gray-600">₹2999</p>
+  <p class="text-yellow-500 text-sm">★★★★☆</p>
+  <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="3"
+          data-name="Leather Jacket"
+          data-price="2999"
+          data-image="https://via.placeholder.com/300x200?text=Men's+Jacket">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <div class="relative">
+    <img src="https://via.placeholder.com/300x200?text=Men's+Shoes" alt="Men's Shoes" class="rounded mb-2">
+  </div>
+  <h3 class="font-medium text-gray-800">Stylish Sneakers</h3>
+  <p class="text-sm text-gray-600">₹1999</p>
+  <p class="text-yellow-500 text-sm">★★★★★</p>
+  <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="4"
+          data-name="Stylish Sneakers"
+          data-price="1999"
+          data-image="https://via.placeholder.com/300x200?text=Men's+Shoes">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <div class="relative">
+    <img src="https://via.placeholder.com/300x200?text=Men's+Watch" alt="Men's Watch" class="rounded mb-2">
+  </div>
+  <h3 class="font-medium text-gray-800">Classic Men's Watch</h3>
+  <p class="text-sm text-gray-600">₹2499</p>
+  <p class="text-yellow-500 text-sm">★★★★☆</p>
+  <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="5"
+          data-name="Classic Men's Watch"
+          data-price="2499"
+          data-image="https://via.placeholder.com/300x200?text=Men's+Watch">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <div class="relative">
+    <img src="https://via.placeholder.com/300x200?text=Men's+Belt" alt="Men's Belt" class="rounded mb-2">
+  </div>
+  <h3 class="font-medium text-gray-800">Genuine Leather Belt</h3>
+  <p class="text-sm text-gray-600">₹799</p>
+  <p class="text-yellow-500 text-sm">★★★★☆</p>
+  <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="6"
+          data-name="Genuine Leather Belt"
+          data-price="799"
+          data-image="https://via.placeholder.com/300x200?text=Men's+Belt">
+    Add to Cart
+  </button>
+</div>
+
+  </main>
+<main class="p-6">
+    <h2 class="text-xl font-semibold mb-4 text-gray-700">Trending in KIDS</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      
+      <!-- KIDS Product Cards -->
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Frock" alt="Frock" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Floral Frock</h3>
+  <p class="text-sm text-gray-600">₹799</p>
+  <p class="text-yellow-500 text-sm">★★★☆☆</p>
+  <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="1"
+          data-name="Floral Frock"
+          data-price="799"
+          data-image="https://via.placeholder.com/300x200?text=Frock">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=T-shirt+Set" alt="Set" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">T-shirt & Shorts Set</h3>
+  <p class="text-sm text-gray-600">₹599</p>
+  <p class="text-yellow-500 text-sm">★★★★☆</p>
+  <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="2"
+          data-name="T-shirt & Shorts Set"
+          data-price="599"
+          data-image="https://via.placeholder.com/300x200?text=T-shirt+Set">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Sneakers" alt="Sneakers" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Kids Sneakers</h3>
+  <p class="text-sm text-gray-600">₹999</p>
+  <p class="text-yellow-500 text-sm">★★★★★</p>
+  <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="3"
+          data-name="Kids Sneakers"
+          data-price="999"
+          data-image="https://via.placeholder.com/300x200?text=Sneakers">
+    Add to Cart
+  </button>
+</div>
+
+<!-- NEW PRODUCTS -->
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Toy+Set" alt="Toy Set" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Building Blocks Set</h3>
+  <p class="text-sm text-gray-600">₹499</p>
+  <p class="text-yellow-500 text-sm">★★★★☆</p>
+  <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="4"
+          data-name="Building Blocks Set"
+          data-price="499"
+          data-image="https://via.placeholder.com/300x200?text=Toy+Set">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=School+Bag" alt="School Bag" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Cartoon School Bag</h3>
+  <p class="text-sm text-gray-600">₹899</p>
+  <p class="text-yellow-500 text-sm">★★★☆☆</p>
+  <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="5"
+          data-name="Cartoon School Bag"
+          data-price="899"
+          data-image="https://via.placeholder.com/300x200?text=School+Bag">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Raincoat" alt="Raincoat" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Colorful Raincoat</h3>
+  <p class="text-sm text-gray-600">₹699</p>
+  <p class="text-yellow-500 text-sm">★★★★☆</p>
+  <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="6"
+          data-name="Colorful Raincoat"
+          data-price="699"
+          data-image="https://via.placeholder.com/300x200?text=Raincoat">
+    Add to Cart
+  </button>
+</div>
+
+  </main>
+  <main class="p-6">
+    <h2 class="text-xl font-semibold mb-4 text-gray-700">Best in Beauty</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      
+     <!-- BEAUTY Product Cards -->
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Lipstick" alt="Lipstick" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Matte Lipstick</h3>
+  <p class="text-sm text-gray-600">₹499</p>
+  <p class="text-yellow-500 text-sm">★★★★★</p>
+  <button class="mt-2 bg-pink-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="1"
+          data-name="Matte Lipstick"
+          data-price="499"
+          data-image="https://via.placeholder.com/300x200?text=Lipstick">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Foundation" alt="Foundation" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Liquid Foundation</h3>
+  <p class="text-sm text-gray-600">₹899</p>
+  <p class="text-yellow-500 text-sm">★★★★☆</p>
+  <button class="mt-2 bg-pink-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="2"
+          data-name="Liquid Foundation"
+          data-price="899"
+          data-image="https://via.placeholder.com/300x200?text=Foundation">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Perfume" alt="Perfume" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Rose Perfume</h3>
+  <p class="text-sm text-gray-600">₹1299</p>
+  <p class="text-yellow-500 text-sm">★★★☆☆</p>
+  <button class="mt-2 bg-pink-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="3"
+          data-name="Rose Perfume"
+          data-price="1299"
+          data-image="https://via.placeholder.com/300x200?text=Perfume">
+    Add to Cart
+  </button>
+</div>
+
+<!-- NEW PRODUCTS -->
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Nail+Polish" alt="Nail Polish" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Glossy Nail Polish</h3>
+  <p class="text-sm text-gray-600">₹299</p>
+  <p class="text-yellow-500 text-sm">★★★★☆</p>
+  <button class="mt-2 bg-pink-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="4"
+          data-name="Glossy Nail Polish"
+          data-price="299"
+          data-image="https://via.placeholder.com/300x200?text=Nail+Polish">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Eye+Liner" alt="Eye Liner" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Waterproof Eye Liner</h3>
+  <p class="text-sm text-gray-600">₹399</p>
+  <p class="text-yellow-500 text-sm">★★★★★</p>
+  <button class="mt-2 bg-pink-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="5"
+          data-name="Waterproof Eye Liner"
+          data-price="399"
+          data-image="https://via.placeholder.com/300x200?text=Eye+Liner">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Face+Cream" alt="Face Cream" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Hydrating Face Cream</h3>
+  <p class="text-sm text-gray-600">₹699</p>
+  <p class="text-yellow-500 text-sm">★★★★☆</p>
+  <button class="mt-2 bg-pink-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="6"
+          data-name="Hydrating Face Cream"
+          data-price="699"
+          data-image="https://via.placeholder.com/300x200?text=Face+Cream">
+    Add to Cart
+  </button>
+</div>
+
+  </main>
+  <main class="p-6">
+    <h2 class="text-xl font-semibold mb-4 text-gray-700">Essentials for Your Home</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      
+      <!-- HOME & KITCHEN Product Cards -->
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Cookware+Set" alt="Cookware" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Cookware Set</h3>
+  <p class="text-sm text-gray-600">₹2499</p>
+  <p class="text-yellow-500 text-sm">★★★★☆</p>
+  <button class="mt-2 bg-green-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="1"
+          data-name="Cookware Set"
+          data-price="2499"
+          data-image="https://via.placeholder.com/300x200?text=Cookware+Set">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Bedsheet" alt="Bedsheet" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Printed Bedsheet</h3>
+  <p class="text-sm text-gray-600">₹1099</p>
+  <p class="text-yellow-500 text-sm">★★★☆☆</p>
+  <button class="mt-2 bg-green-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="2"
+          data-name="Printed Bedsheet"
+          data-price="1099"
+          data-image="https://via.placeholder.com/300x200?text=Bedsheet">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Lamp" alt="Lamp" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Decorative Lamp</h3>
+  <p class="text-sm text-gray-600">₹799</p>
+  <p class="text-yellow-500 text-sm">★★★★★</p>
+  <button class="mt-2 bg-green-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="3"
+          data-name="Decorative Lamp"
+          data-price="799"
+          data-image="https://via.placeholder.com/300x200?text=Lamp">
+    Add to Cart
+  </button>
+</div>
+
+<!-- NEW PRODUCTS -->
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Storage+Box" alt="Storage Box" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Foldable Storage Box</h3>
+  <p class="text-sm text-gray-600">₹599</p>
+  <p class="text-yellow-500 text-sm">★★★★☆</p>
+  <button class="mt-2 bg-green-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="4"
+          data-name="Foldable Storage Box"
+          data-price="599"
+          data-image="https://via.placeholder.com/300x200?text=Storage+Box">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Wall+Clock" alt="Wall Clock" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Modern Wall Clock</h3>
+  <p class="text-sm text-gray-600">₹999</p>
+  <p class="text-yellow-500 text-sm">★★★★☆</p>
+  <button class="mt-2 bg-green-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="5"
+          data-name="Modern Wall Clock"
+          data-price="999"
+          data-image="https://via.placeholder.com/300x200?text=Wall+Clock">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Tableware" alt="Tableware" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Elegant Tableware Set</h3>
+  <p class="text-sm text-gray-600">₹1899</p>
+  <p class="text-yellow-500 text-sm">★★★★★</p>
+  <button class="mt-2 bg-green-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="6"
+          data-name="Elegant Tableware Set"
+          data-price="1899"
+          data-image="https://via.placeholder.com/300x200?text=Tableware">
+    Add to Cart
+  </button>
+</div>
+
+  </main>
+ </main>
+  <script src="script.js"></script>
+  <footer style="background-color: #2c3e50; color: white; padding: 40px; font-family: sans-serif;">
+  <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+    <!-- Ajio Column -->
+    <div>
+      <h3>Ajio</h3>
+      <ul style="list-style: none; padding: 0;">
+        <li>Who We Are</li>
+        <li>Join Our Team</li>
+        <li>Terms & Condition</li>
+        <li>We Respect Your Privacy</li>
+        <li>Fees & Payments</li>
+        <li>Return & Refund Policy</li>
+        <li>Promotions Terms & Conditions</li>
+      </ul>
+    </div>
+
+    <!-- Help Column -->
+    <div>
+      <h3>Help</h3>
+      <ul style="list-style: none; padding: 0;">
+        <li>Track Your Order</li>
+        <li>FAQs</li>
+        <li>Returns</li>
+        <li>Cancellations</li>
+        <li>Payments</li>
+        <li>Customer Service</li>
+        <li>How Do I Reedem My Coupon?</li>
+      </ul>
+    </div>
+
+    <!-- Shop By Column -->
+    <div>
+      <h3>Shop by</h3>
+      <ul style="list-style: none; padding: 0;">
+        <li>Men</li>
+        <li>Women</li>
+        <li>Kids</li>
+        <li>Indie</li>
+        <li>Stores</li>
+        <li>New Arrivals</li>
+        <li>Brand Directory</li>
+        <li>Home</li>
+        <li>Collections</li>
+      </ul>
+    </div>
+
+    <!-- Follow Us Column -->
+    <div>
+      <h3>Follow us</h3>
+      <ul style="list-style: none; padding: 0;">
+        <li>Facebook</li>
+        <li>Instagram</li>
+        <li>Twitter</li>
+        <li>Pinterest</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr style="margin: 40px 0; border-color: #ccc;" />
+
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <p>Payment methods</p>
+    <p>Secure systems</p>
+    <div style="background-color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; cursor: pointer;">
+      <span style="font-size: 24px;">↑</span>
+    </div>
+  </div>
+  <p style="text-align: center; margin-top: 20px;">© 2023 ShopAjio. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

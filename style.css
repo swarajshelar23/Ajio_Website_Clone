@@ -1,0 +1,76 @@
+.carousel {
+    display: flex;
+    animation: scroll 20s linear infinite; /* Animation for scrolling */
+}
+
+.movie {
+    margin-right: 20px;
+    transition: transform 0.3s;
+}
+
+.movie img {
+    width: 200px;
+    height: 300px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.movie:hover img {
+    transform: scale(1.1);
+}
+
+/* Keyframes for scrolling animation */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Adjust based on the number of items */
+    }
+}
+#input1{
+    padding: 10px;
+    background-color: #363636d2;
+}
+body {
+      font-family: Arial, sans-serif;
+    }
+
+    .sidebar {
+      width: 250px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      background-color: #fff;
+    }
+
+    .filter-section {
+      margin-bottom: 20px;
+    }
+
+    .filter-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .filter-options label {
+      display: block;
+      margin: 6px 0;
+      font-size: 14px;
+    }
+
+    .filter-options input {
+      margin-right: 8px;
+    }
+
+    .more-filters {
+      font-size: 14px;
+      color: #007185;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .divider {
+      border-top: 1px solid #ddd;
+      margin: 15px 0;
+    }

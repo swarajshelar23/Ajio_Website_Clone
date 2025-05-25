@@ -1,0 +1,247 @@
+<!-- Save as home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AJIO - HOME & KITCHEN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+          <!-- Left: Logo + Nav -->
+          <div class="flex items-center space-x-8">
+            <!-- Logo -->
+            <a href="onlineshop.html">
+              <img src="https://assets.ajio.com/static/img/Ajio-Logo.svg" alt="Ajio Logo" class="h-8">
+            </a>
+      
+            <!-- Navigation -->
+            <nav class="hidden md:flex space-x-6 text-sm font-semibold text-gray-700">
+              <div class="relative group">
+                <a href="men.html" class="hover:text-blue-600">MEN</a>
+                <!-- Dropdown -->
+                <div class="absolute hidden group-hover:block bg-white shadow p-4 mt-2 rounded text-sm">
+                  <a href="men.html" class="block hover:text-blue-500">Clothing</a>
+                  <a href="men.html" class="block hover:text-blue-500">Footwear</a>
+                  <a href="men.html" class="block hover:text-blue-500">Accessories</a>
+                </div>
+              </div>
+              <div class="relative group">
+                <a href="women.html" class="hover:text-blue-600">WOMEN</a>
+                <div class="absolute hidden group-hover:block bg-white shadow p-4 mt-2 rounded text-sm">
+                  <a href="women.html" class="block hover:text-blue-500">Kurtis</a>
+                  <a href="women.html" class="block hover:text-blue-500">Jeans</a>
+                  <a href="women.html" class="block hover:text-blue-500">Sarees</a>
+                </div>
+              </div>
+              <a href="kids.html" class="hover:text-blue-600">KIDS</a>
+              <a href="beauty.html" class="hover:text-blue-600">BEAUTY</a>
+              <a href="HOME_&_KITCHEN.HTML" class="hover:text-blue-600">Home & Kitchen</a>
+            </nav>
+          </div>
+      
+          <!-- Middle: Search Bar -->
+          <div class="flex-1 mx-4 hidden md:block">
+            <input type="text" placeholder="Search AJIO..." class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          </div>
+      
+          <!-- Right: Cart -->
+          <div class="flex items-center space-x-4">
+        <button id="cart-button" class="bg-blue-500 text-white px-4 py-2 rounded" onclick="window.location.href='cart.html'">
+          Cart (<span id="cart-count">0</span>)
+        </button>
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-button" class="md:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+          <nav class="flex flex-col space-y-2 text-gray-700 text-sm font-semibold">
+            <a href="men.html" class="hover:text-blue-500">MEN</a>
+            <a href="women.html" class="hover:text-blue-500">WOMEN</a>
+            <a href="kids.html" class="hover:text-blue-500">KIDS</a>
+            <a href="beauty.html" class="hover:text-blue-500">BEAUTY</a>
+            <a href="HOME_&_KITCHEN.HTML" class="hover:text-blue-500">Home & Kitchen</a>
+          </nav>
+      
+          <div class="mt-4">
+            <input type="text" placeholder="Search AJIO..." class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          </div>
+        </div>
+      </header>
+  <header class="bg-white shadow p-4">
+    <h1 class="text-2xl font-bold text-gray-800">AJIO - HOME & KITCHEN</h1>
+  </header>
+  <div class="flex">
+   <!-- Sidebar Start -->
+  <aside class="w-64 bg-white shadow-lg p-6 overflow-y-auto hidden lg:block">
+    <div class="filter-section mb-6">
+      <div class="filter-title font-bold text-lg mb-2">Refine By</div>
+      <div class="filter-options space-y-2">
+        <label class="flex items-center space-x-2"><input type="checkbox"> <span>Gender</span></label>
+      </div>
+    </div>
+
+    <div class="divider border-b mb-4"></div>
+
+    <div class="filter-section mb-6">
+      <div class="filter-title font-semibold mb-2">Category</div>
+      <div class="filter-options space-y-2">
+        <label class="flex items-center space-x-2"><input type="checkbox"> <span>Dresses (215)</span></label>
+        <label class="flex items-center space-x-2"><input type="checkbox"> <span>Kurtas (124)</span></label>
+        <label class="flex items-center space-x-2"><input type="checkbox"> <span>Tops (80)</span></label>
+        <label class="flex items-center space-x-2"><input type="checkbox"> <span>T-Shirts (50)</span></label>
+        <label class="flex items-center space-x-2"><input type="checkbox"> <span>Night Suits (32)</span></label>
+      </div>
+    </div>
+
+    <div class="filter-section mb-6">
+      <div class="filter-title font-semibold mb-2">Price</div>
+      <!-- Add price filter controls here -->
+    </div>
+
+    <div class="filter-section mb-6">
+      <div class="filter-title font-semibold mb-2">Brand</div>
+      <!-- Add brand filter controls here -->
+    </div>
+
+    <div class="filter-section mb-6">
+      <div class="filter-title font-semibold mb-2">Occasion</div>
+      <!-- Add occasion filter controls here -->
+    </div>
+
+    <div class="filter-section mb-6">
+      <div class="filter-title font-semibold mb-2">Discount</div>
+      <!-- Add discount filter controls here -->
+    </div>
+
+    <div class="filter-section mb-6">
+      <div class="filter-title font-semibold mb-2">Color</div>
+      <!-- Add color filter controls here -->
+    </div>
+
+    <div class="filter-section mb-6">
+      <div class="filter-title font-semibold mb-2">Size & Fit</div>
+      <!-- Add size & fit filter controls here -->
+    </div>
+
+    <div class="filter-section mb-6">
+      <div class="filter-title font-semibold mb-2">Tags</div>
+      <!-- Add tags filter controls here -->
+    </div>
+
+    <div class="filter-section mb-6">
+      <div class="filter-title font-semibold mb-2">Rating</div>
+      <!-- Add rating filter controls here -->
+    </div>
+
+    <div class="divider border-b mb-4"></div>
+
+    <div class="filter-section">
+      <button class="w-full bg-gray-200 text-gray-700 py-2 rounded mb-2">More Filters</button>
+      <button class="w-full bg-gray-200 text-gray-700 py-2 rounded">SELECT CATEGORY</button>
+    </div>
+  </aside>
+  <!-- Sidebar End -->
+  <main class="p-6">
+    <h2 class="text-xl font-semibold mb-4 text-gray-700">Essentials for Your Home</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      
+      <!-- HOME & KITCHEN Product Cards -->
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Cookware+Set" alt="Cookware" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Cookware Set</h3>
+  <p class="text-sm text-gray-600">₹2499</p>
+  <p class="text-yellow-500 text-sm">★★★★☆</p>
+  <button class="mt-2 bg-green-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="1"
+          data-name="Cookware Set"
+          data-price="2499"
+          data-image="https://via.placeholder.com/300x200?text=Cookware+Set">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Bedsheet" alt="Bedsheet" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Printed Bedsheet</h3>
+  <p class="text-sm text-gray-600">₹1099</p>
+  <p class="text-yellow-500 text-sm">★★★☆☆</p>
+  <button class="mt-2 bg-green-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="2"
+          data-name="Printed Bedsheet"
+          data-price="1099"
+          data-image="https://via.placeholder.com/300x200?text=Bedsheet">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Lamp" alt="Lamp" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Decorative Lamp</h3>
+  <p class="text-sm text-gray-600">₹799</p>
+  <p class="text-yellow-500 text-sm">★★★★★</p>
+  <button class="mt-2 bg-green-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="3"
+          data-name="Decorative Lamp"
+          data-price="799"
+          data-image="https://via.placeholder.com/300x200?text=Lamp">
+    Add to Cart
+  </button>
+</div>
+
+<!-- NEW PRODUCTS -->
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Storage+Box" alt="Storage Box" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Foldable Storage Box</h3>
+  <p class="text-sm text-gray-600">₹599</p>
+  <p class="text-yellow-500 text-sm">★★★★☆</p>
+  <button class="mt-2 bg-green-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="4"
+          data-name="Foldable Storage Box"
+          data-price="599"
+          data-image="https://via.placeholder.com/300x200?text=Storage+Box">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Wall+Clock" alt="Wall Clock" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Modern Wall Clock</h3>
+  <p class="text-sm text-gray-600">₹999</p>
+  <p class="text-yellow-500 text-sm">★★★★☆</p>
+  <button class="mt-2 bg-green-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="5"
+          data-name="Modern Wall Clock"
+          data-price="999"
+          data-image="https://via.placeholder.com/300x200?text=Wall+Clock">
+    Add to Cart
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
+  <img src="https://via.placeholder.com/300x200?text=Tableware" alt="Tableware" class="rounded mb-2">
+  <h3 class="font-medium text-gray-800">Elegant Tableware Set</h3>
+  <p class="text-sm text-gray-600">₹1899</p>
+  <p class="text-yellow-500 text-sm">★★★★★</p>
+  <button class="mt-2 bg-green-600 text-white px-3 py-1 rounded add-to-cart"
+          data-id="6"
+          data-name="Elegant Tableware Set"
+          data-price="1899"
+          data-image="https://via.placeholder.com/300x200?text=Tableware">
+    Add to Cart
+  </button>
+</div>
+
+  </main>
+    <script src="script.js"></script>
+</body>
+</html>
