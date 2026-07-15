@@ -1,76 +1,281 @@
-.carousel {
-    display: flex;
-    animation: scroll 20s linear infinite; /* Animation for scrolling */
+:root {
+  --ajio-navy: #1f2937;
+  --ajio-ink: #111827;
+  --ajio-rose: #d94660;
+  --ajio-amber: #f59e0b;
+  --ajio-sky: #2563eb;
+  --ajio-surface: #ffffff;
+  --ajio-muted: #6b7280;
+  --ajio-border: #e5e7eb;
+  --ajio-bg: #f3f4f6;
 }
 
-.movie {
-    margin-right: 20px;
-    transition: transform 0.3s;
+html {
+  scroll-behavior: smooth;
 }
 
-.movie img {
-    width: 200px;
-    height: 300px;
-    border-radius: 10px;
-    transition: transform 0.3s;
-}
-
-.movie:hover img {
-    transform: scale(1.1);
-}
-
-/* Keyframes for scrolling animation */
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%); /* Adjust based on the number of items */
-    }
-}
-#input1{
-    padding: 10px;
-    background-color: #363636d2;
-}
 body {
-      font-family: Arial, sans-serif;
-    }
+  font-family: Arial, sans-serif;
+  background: var(--ajio-bg);
+  color: var(--ajio-ink);
+}
 
-    .sidebar {
-      width: 250px;
-      padding: 20px;
-      border: 1px solid #ddd;
-      background-color: #fff;
-    }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(14px);
+}
 
-    .filter-section {
-      margin-bottom: 20px;
-    }
+.site-header-inner {
+  border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+}
 
-    .filter-title {
-      font-size: 16px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
+.nav-link {
+  position: relative;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
 
-    .filter-options label {
-      display: block;
-      margin: 6px 0;
-      font-size: 14px;
-    }
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
 
-    .filter-options input {
-      margin-right: 8px;
-    }
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
 
-    .more-filters {
-      font-size: 14px;
-      color: #007185;
-      cursor: pointer;
-      text-decoration: underline;
-    }
+.nav-link.active {
+  color: var(--ajio-sky);
+}
 
-    .divider {
-      border-top: 1px solid #ddd;
-      margin: 15px 0;
-    }
+.nav-pill,
+.icon-pill,
+.filter-pill,
+.primary-button,
+.secondary-button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-pill:hover,
+.icon-pill:hover,
+.filter-pill:hover,
+.primary-button:hover,
+.secondary-button:hover {
+  transform: translateY(-1px);
+}
+
+.icon-pill {
+  position: relative;
+}
+
+.icon-badge {
+  position: absolute;
+  top: -0.35rem;
+  right: -0.35rem;
+  min-width: 1.15rem;
+  height: 1.15rem;
+  padding: 0 0.25rem;
+  border-radius: 999px;
+  background: var(--ajio-rose);
+  color: #fff;
+  font-size: 0.7rem;
+  line-height: 1.15rem;
+  text-align: center;
+}
+
+.hero-banner {
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.14), transparent 32%),
+    linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.hero-image-shell {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(217, 70, 96, 0.12));
+}
+
+.section-shell {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.05);
+}
+
+.section-title {
+  letter-spacing: -0.02em;
+}
+
+.product-card {
+  background: #fff;
+  border: 1px solid var(--ajio-border);
+  border-radius: 1rem;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.09);
+  border-color: rgba(37, 99, 235, 0.2);
+}
+
+.product-media {
+  overflow: hidden;
+  background: #f9fafb;
+}
+
+.product-image {
+  transition: transform 0.35s ease;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.06);
+}
+
+.wishlist-button {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #ef4444;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+}
+
+.wishlist-button.is-active {
+  background: #ef4444;
+  color: #fff;
+}
+
+.price-old {
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+
+.discount-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.product-empty {
+  display: none;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px dashed var(--ajio-border);
+  border-radius: 1rem;
+  background: #fff;
+}
+
+.filter-chip,
+.filter-select,
+.search-input,
+.newsletter-input {
+  border: 1px solid var(--ajio-border);
+  background: #fff;
+  border-radius: 0.9rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filter-chip:focus,
+.filter-select:focus,
+.search-input:focus,
+.newsletter-input:focus {
+  outline: none;
+  border-color: rgba(37, 99, 235, 0.45);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.feature-card,
+.testimonial-card,
+.showcase-card {
+  background: #fff;
+  border: 1px solid var(--ajio-border);
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.fade-in {
+  animation: fadeInUp 0.5s ease both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-menu {
+  border-top: 1px solid var(--ajio-border);
+}
+
+.footer-link {
+  color: #d1d5db;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #fff;
+}
+
+.sidebar {
+  width: 250px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.filter-section {
+  margin-bottom: 20px;
+}
+
+.filter-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.filter-options label {
+  display: block;
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+.filter-options input {
+  margin-right: 8px;
+}
+
+.more-filters {
+  font-size: 14px;
+  color: #007185;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.divider {
+  border-top: 1px solid #ddd;
+  margin: 15px 0;
+}

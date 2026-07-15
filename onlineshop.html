@@ -3,247 +3,321 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ShopAjio</title>
+  <meta name="description" content="ShopAjio is an AJIO-inspired fashion marketplace for men, women, kids, beauty, and home essentials.">
+  <meta name="keywords" content="AJIO clone, online shopping, fashion, men, women, kids, beauty, home and kitchen">
+  <meta name="theme-color" content="#111827">
+  <title>ShopAjio | Fashion, Beauty & Home Essentials</title>
+  <link rel="icon" href="https://assets.ajio.com/static/img/Ajio-Logo.svg">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
- 
-  <header class="bg-white shadow">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
-      <div class="flex items-center space-x-8">
-        <a href="onlineshop.html">
-          <img src="https://assets.ajio.com/static/img/Ajio-Logo.svg" alt="Ajio Logo" class="h-8">
-        </a>
-  
-        <nav class="hidden md:flex space-x-6 text-sm font-semibold text-gray-700">
-          <div class="relative group">
-            <a href="men.html" class="hover:text-blue-600">MEN</a>
-            <div class="absolute hidden group-hover:block bg-white shadow p-4 mt-2 rounded text-sm">
-              <a href="men.html" class="block hover:text-blue-500">Clothing</a>
-              <a href="men.html" class="block hover:text-blue-500">Footwear</a>
-              <a href="men.html" class="block hover:text-blue-500">Accessories</a>
+  <header class="site-header bg-white/95 shadow-sm">
+    <div class="site-header-inner">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between gap-4 py-4">
+          <div class="flex items-center gap-8">
+            <a href="onlineshop.html" class="shrink-0">
+              <img src="https://assets.ajio.com/static/img/Ajio-Logo.svg" alt="Ajio Logo" class="h-8" loading="lazy">
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-gray-700" aria-label="Primary">
+              <a href="onlineshop.html" class="nav-link">Home</a>
+              <a href="men.html" class="nav-link">Men</a>
+              <a href="women.html" class="nav-link">Women</a>
+              <a href="kids.html" class="nav-link">Kids</a>
+              <a href="beauty.html" class="nav-link">Beauty</a>
+              <a href="HOME_&_KITCHEN.HTML" class="nav-link">Home & Kitchen</a>
+            </nav>
+          </div>
+
+          <div class="hidden md:flex flex-1 max-w-xl">
+            <label class="search-input flex w-full items-center gap-3 px-4 py-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-4.35-4.35m1.85-5.4A7.2 7.2 0 1 1 7.2 4.05a7.2 7.2 0 0 1 11.3 7.2Z" />
+              </svg>
+              <input id="global-search" type="search" placeholder="Search products or brands" class="w-full bg-transparent text-sm text-gray-900 placeholder:text-gray-400">
+            </label>
+          </div>
+
+          <div class="flex items-center gap-2 sm:gap-3">
+            <a href="login.html" class="hidden sm:inline-flex nav-pill items-center rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 hover:border-blue-200 hover:text-blue-600">Login</a>
+            <a href="register.html" class="hidden sm:inline-flex nav-pill items-center rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 hover:border-blue-200 hover:text-blue-600">Register</a>
+            <a href="#wishlist" class="icon-pill inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 hover:border-red-200" aria-label="Wishlist">
+              <span class="text-lg">♥</span>
+              <span id="wishlist-count" class="icon-badge">0</span>
+            </a>
+            <a href="cart.html" class="icon-pill inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 hover:border-blue-200" aria-label="Cart">
+              <span class="text-lg">🛒</span>
+              <span id="cart-count" class="icon-badge">0</span>
+            </a>
+            <button id="mobile-menu-button" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 lg:hidden" aria-label="Open menu">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div id="mobile-menu" class="mobile-menu hidden lg:hidden pb-4">
+          <div class="grid gap-3 rounded-2xl bg-gray-50 p-4">
+            <label class="search-input flex items-center gap-3 px-4 py-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-4.35-4.35m1.85-5.4A7.2 7.2 0 1 1 7.2 4.05a7.2 7.2 0 0 1 11.3 7.2Z" />
+              </svg>
+              <input type="search" placeholder="Search products or brands" class="w-full bg-transparent text-sm text-gray-900 placeholder:text-gray-400">
+            </label>
+            <div class="grid grid-cols-2 gap-3 text-sm font-semibold text-gray-700">
+              <a href="onlineshop.html" class="rounded-xl bg-white px-4 py-3">Home</a>
+              <a href="men.html" class="rounded-xl bg-white px-4 py-3">Men</a>
+              <a href="women.html" class="rounded-xl bg-white px-4 py-3">Women</a>
+              <a href="kids.html" class="rounded-xl bg-white px-4 py-3">Kids</a>
+              <a href="beauty.html" class="rounded-xl bg-white px-4 py-3">Beauty</a>
+              <a href="HOME_&_KITCHEN.HTML" class="rounded-xl bg-white px-4 py-3">Home & Kitchen</a>
             </div>
           </div>
-          <div class="relative group">
-            <a href="women.html" class="hover:text-blue-600">WOMEN</a>
-            <div class="absolute hidden group-hover:block bg-white shadow p-4 mt-2 rounded text-sm">
-              <a href="women.html" class="block hover:text-blue-500">Kurtis</a>
-              <a href="women.html" class="block hover:text-blue-500">Jeans</a>
-              <a href="women.html" class="block hover:text-blue-500">Sarees</a>
-            </div>
-          </div>
-          <a href="kids.html" class="hover:text-blue-600">KIDS</a>
-          <a href="beauty.html" class="hover:text-blue-600">BEAUTY</a>
-          <a href="HOME_&_KITCHEN.HTML" class="hover:text-blue-600">Home & Kitchen</a>
-        </nav>
-      </div>
-  
-      <div class="flex-1 mx-4 hidden md:block">
-        <input type="text" placeholder="Search AJIO..." class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
-      </div>
-  
-      <div class="flex items-center space-x-4">
-        <a href="login.html" class="text-sm font-medium text-blue-600 hover:underline">Login</a>
-        <a href="register.html" class="text-sm font-medium text-blue-600 hover:underline">Register</a>
-        <button id="cart-button" class="bg-blue-500 text-white px-4 py-2 rounded" onclick="window.location.href='cart.html'">
-          Cart (<span id="cart-count">0</span>)
-        </button>
-        <button id="mobile-menu-button" class="md:hidden">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  
-    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
-      <nav class="flex flex-col space-y-2 text-gray-700 text-sm font-semibold">
-        <a href="men.html" class="hover:text-blue-500">MEN</a>
-        <a href="women.html" class="hover:text-blue-500">WOMEN</a>
-        <a href="kids.html" class="hover:text-blue-500">KIDS</a>
-        <a href="beauty.html" class="hover:text-blue-500">BEAUTY</a>
-        <a href="HOME_&_KITCHEN.HTML" class="hover:text-blue-500">Home & Kitchen</a>
-      </nav>
-      <div class="mt-4">
-        <input type="text" placeholder="Search AJIO..." class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
       </div>
     </div>
   </header>
-  
-  <script>
-    // Check if user is logged in
-    const user = localStorage.getItem("user");
-    if (!user) {
-      alert("You must be logged in to view this page.");
-      window.location.href = "login.html";
-    }
-    const loggedInUser = JSON.parse(localStorage.getItem("user"));
-    if (loggedInUser) {
-      document.write(`<div class="max-w-7xl mx-auto px-4 mt-2"><span class="text-sm text-gray-700 font-medium">Welcome, ${loggedInUser.name}</span></div>`);
-    }
-  </script>
 
-  <section class="max-w-7xl mx-auto p-4">
-    <img 
-      src="https://assets.ajio.com/cms/AJIO/MOBILE/M-AASS-UHP-1.0-S1-MAINBANNER-P1-allstarsale-06032025.gif" 
-      alt="Sale Banner"
-      class="w-full rounded-lg shadow-lg object-cover h-64"
-    >
-  </section>
+  <main>
+    <div id="welcome-banner"></div>
 
-  <main class="max-w-7xl mx-auto">
-    
-    <section class="p-6">
-      <h2 class="text-xl font-semibold text-gray-700 mb-4">Trending in WOMEN</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-
-        <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
-          <div class="relative">
-            <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=300&h=200&q=80" alt="Kurti" class="rounded mb-2 w-full object-cover h-48">
-            <span class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">-30%</span>
+    <section class="hero-banner">
+      <div class="max-w-7xl mx-auto px-4 py-8 sm:py-10 lg:py-14">
+        <div class="grid items-center gap-8 lg:grid-cols-2">
+          <div class="space-y-6">
+            <span class="inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">New season. Fresh picks. Better prices.</span>
+            <div class="space-y-4">
+              <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">Style that moves with your everyday.</h1>
+              <p class="max-w-xl text-base leading-7 text-gray-600 sm:text-lg">Discover curated fashion, beauty essentials, and home upgrades with a cleaner shopping experience, smarter search, and faster checkout flow.</p>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <a href="#trending-section" class="primary-button rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-600/20">Shop Trending</a>
+              <a href="#featured-categories" class="secondary-button rounded-full border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-700">Browse Categories</a>
+            </div>
+            <div class="grid grid-cols-3 gap-3 text-sm">
+              <div class="rounded-2xl bg-white px-4 py-3 shadow-sm"><p class="text-lg font-bold text-gray-900">2K+</p><p class="text-gray-500">Products</p></div>
+              <div class="rounded-2xl bg-white px-4 py-3 shadow-sm"><p class="text-lg font-bold text-gray-900">24h</p><p class="text-gray-500">Dispatch</p></div>
+              <div class="rounded-2xl bg-white px-4 py-3 shadow-sm"><p class="text-lg font-bold text-gray-900">4.8/5</p><p class="text-gray-500">Ratings</p></div>
+            </div>
           </div>
-          <h3 class="font-medium text-gray-800">Floral Printed Kurti</h3>
-          <p class="text-sm text-gray-600">₹999 <s class="text-gray-400">₹1399</s></p>
-          <p class="text-yellow-500 text-sm">★★★★☆</p>
-          <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart" data-id="1" data-name="Floral Printed Kurti" data-price="999" data-image="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=300&q=80">Add to Cart</button>
-        </div>
-
-        <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
-          <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=300&h=200&q=80" alt="Dress" class="rounded mb-2 w-full object-cover h-48">
-          <h3 class="font-medium text-gray-800">Fit & Flare Dress</h3>
-          <p class="text-sm text-gray-600">₹1499</p>
-          <p class="text-yellow-500 text-sm">★★★★★</p>
-          <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart" data-id="2" data-name="Fit & Flare Dress" data-price="1499" data-image="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=300&q=80">Add to Cart</button>
-        </div>
-
-        <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
-          <img src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?auto=format&fit=crop&w=300&h=200&q=80" alt="Top" class="rounded mb-2 w-full object-cover h-48">
-          <h3 class="font-medium text-gray-800">Puff Sleeve Top</h3>
-          <p class="text-sm text-gray-600">₹699</p>
-          <p class="text-yellow-500 text-sm">★★★★☆</p>
-          <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart" data-id="3" data-name="Puff Sleeve Top" data-price="699" data-image="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?auto=format&fit=crop&w=300&q=80">Add to Cart</button>
-        </div>
-
-        <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
-          <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=300&h=200&q=80" alt="Jeans" class="rounded mb-2 w-full object-cover h-48">
-          <h3 class="font-medium text-gray-800">High-Waist Jeans</h3>
-          <p class="text-sm text-gray-600">₹1199</p>
-          <p class="text-yellow-500 text-sm">★★★☆☆</p>
-          <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart" data-id="4" data-name="High-Waist Jeans" data-price="1199" data-image="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=300&q=80">Add to Cart</button>
+          <div class="hero-image-shell rounded-3xl p-4 sm:p-6 lg:p-8">
+            <div class="overflow-hidden rounded-3xl bg-white shadow-2xl">
+              <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1400&q=80" alt="Fashion banner" class="h-[320px] w-full object-cover sm:h-[420px]" loading="lazy">
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="p-6">
-      <h2 class="text-xl font-semibold text-gray-700 mb-4">Trending in MEN</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-
-<!-- Men's Jeans -->
-<div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
-  <div class="relative">
-    <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=300&h=200&q=80" alt="Men's Jeans" class="w-full h-48 object-cover rounded mb-2">
-  </div>
-  <h3 class="font-medium text-gray-800">Slim Fit Jeans</h3>
-  <p class="text-sm text-gray-600">₹1299</p>
-  <p class="text-yellow-500 text-sm">★★★★★</p>
-  <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart"
-          data-id="2"
-          data-name="Slim Fit Jeans"
-          data-price="1299"
-          data-image="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=300&h=200&q=80">
-    Add to Cart
-  </button>
-</div>
-
-        <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
-          <div class="relative">
-            <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=300&h=200&q=80" alt="Men's Jacket" class="rounded mb-2 w-full object-cover h-48">
-          </div>
-          <h3 class="font-medium text-gray-800">Leather Jacket</h3>
-          <p class="text-sm text-gray-600">₹2999</p>
-          <p class="text-yellow-500 text-sm">★★★★☆</p>
-          <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart" data-id="7" data-name="Leather Jacket" data-price="2999" data-image="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=300&q=80">Add to Cart</button>
+    <section id="featured-categories" class="max-w-7xl mx-auto px-4 py-6 sm:py-10">
+      <div class="mb-6 flex items-end justify-between gap-4">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">Featured Categories</p>
+          <h2 class="section-title mt-2 text-3xl font-bold text-gray-900">Shop by department</h2>
         </div>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <a href="women.html" class="feature-card p-4">
+          <p class="text-xs uppercase tracking-[0.2em] text-gray-500">Women</p>
+          <h3 class="mt-2 text-lg font-semibold text-gray-900">Everyday elegance</h3>
+          <p class="mt-1 text-sm text-gray-600">Kurtis, dresses, tops and denim.</p>
+        </a>
+        <a href="men.html" class="feature-card p-4">
+          <p class="text-xs uppercase tracking-[0.2em] text-gray-500">Men</p>
+          <h3 class="mt-2 text-lg font-semibold text-gray-900">Casual and sharp</h3>
+          <p class="mt-1 text-sm text-gray-600">Shirts, jackets, sneakers and more.</p>
+        </a>
+        <a href="kids.html" class="feature-card p-4">
+          <p class="text-xs uppercase tracking-[0.2em] text-gray-500">Kids</p>
+          <h3 class="mt-2 text-lg font-semibold text-gray-900">Play-ready picks</h3>
+          <p class="mt-1 text-sm text-gray-600">Comfortable clothing and fun essentials.</p>
+        </a>
+        <a href="beauty.html" class="feature-card p-4">
+          <p class="text-xs uppercase tracking-[0.2em] text-gray-500">Beauty</p>
+          <h3 class="mt-2 text-lg font-semibold text-gray-900">Glow essentials</h3>
+          <p class="mt-1 text-sm text-gray-600">Makeup, skincare and fragrance.</p>
+        </a>
+        <a href="HOME_&_KITCHEN.HTML" class="feature-card p-4">
+          <p class="text-xs uppercase tracking-[0.2em] text-gray-500">Home</p>
+          <h3 class="mt-2 text-lg font-semibold text-gray-900">Smart living</h3>
+          <p class="mt-1 text-sm text-gray-600">Kitchen, storage and decor upgrades.</p>
+        </a>
+      </div>
+    </section>
 
-        <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
-          <div class="relative">
-            <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=300&h=200&q=80" alt="Men's Shoes" class="rounded mb-2 w-full object-cover h-48">
-          </div>
-          <h3 class="font-medium text-gray-800">Stylish Sneakers</h3>
-          <p class="text-sm text-gray-600">₹1999</p>
-          <p class="text-yellow-500 text-sm">★★★★★</p>
-          <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded add-to-cart" data-id="8" data-name="Stylish Sneakers" data-price="1999" data-image="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=300&q=80">Add to Cart</button>
+    <section class="max-w-7xl mx-auto px-4 py-6 sm:py-10">
+      <div class="section-shell rounded-3xl p-5 sm:p-6 lg:p-8">
+        <div class="grid gap-4 lg:grid-cols-2 xl:grid-cols-5">
+          <label class="filter-chip flex items-center gap-3 px-4 py-3 xl:col-span-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-4.35-4.35m1.85-5.4A7.2 7.2 0 1 1 7.2 4.05a7.2 7.2 0 0 1 11.3 7.2Z" /></svg>
+            <input id="global-search" class="w-full bg-transparent text-sm text-gray-900 placeholder:text-gray-400" type="search" placeholder="Search by product or brand">
+          </label>
+          <select id="brand-filter" class="filter-select px-4 py-3 text-sm text-gray-700">
+            <option value="all">All Brands</option>
+            <option value="sangria">Sangria</option>
+            <option value="dnmx">DNMX</option>
+            <option value="lakme">Lakme</option>
+            <option value="kazo">Kazo</option>
+            <option value="nivea">Nivea</option>
+            <option value="bella vita">Bella Vita</option>
+            <option value="wonderchef">Wonderchef</option>
+            <option value="mini club">Mini Club</option>
+            <option value="home centre">Home Centre</option>
+            <option value="rio">RIO</option>
+            <option value="netplay">Netplay</option>
+          </select>
+          <select id="category-filter" class="filter-select px-4 py-3 text-sm text-gray-700">
+            <option value="all">All Categories</option>
+            <option value="women">Women</option>
+            <option value="men">Men</option>
+            <option value="kids">Kids</option>
+            <option value="beauty">Beauty</option>
+            <option value="home & kitchen">Home & Kitchen</option>
+          </select>
+          <select id="price-filter" class="filter-select px-4 py-3 text-sm text-gray-700">
+            <option value="all">All Prices</option>
+            <option value="under-1000">Under ₹1000</option>
+            <option value="1000-2000">₹1000 - ₹2000</option>
+            <option value="above-2000">Above ₹2000</option>
+          </select>
+          <select id="sort-filter" class="filter-select px-4 py-3 text-sm text-gray-700 xl:col-span-5">
+            <option value="featured">Sort by Featured</option>
+            <option value="price-low">Price Low to High</option>
+            <option value="price-high">Price High to Low</option>
+            <option value="name-asc">A-Z</option>
+            <option value="name-desc">Z-A</option>
+            <option value="rating">Highest Rated</option>
+          </select>
         </div>
       </div>
     </section>
 
-    <section class="p-6">
-      <h2 class="text-xl font-semibold mb-4 text-gray-700">Best in Beauty</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        
-        <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
-          <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=300&h=200&q=80" alt="Lipstick" class="rounded mb-2 w-full object-cover h-48">
-          <h3 class="font-medium text-gray-800">Matte Lipstick</h3>
-          <p class="text-sm text-gray-600">₹499</p>
-          <p class="text-yellow-500 text-sm">★★★★★</p>
-          <button class="mt-2 bg-pink-600 text-white px-3 py-1 rounded add-to-cart" data-id="9" data-name="Matte Lipstick" data-price="499" data-image="https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=300&q=80">Add to Cart</button>
+    <section id="trending-section" class="max-w-7xl mx-auto px-4 py-6 sm:py-10">
+      <div class="mb-6 flex items-end justify-between gap-4">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">Trending Products</p>
+          <h2 class="section-title mt-2 text-3xl font-bold text-gray-900">Most popular right now</h2>
         </div>
+      </div>
+      <div id="trending-products" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
+      <div id="products-empty" class="product-empty mt-6">No Products Found</div>
+    </section>
 
-        <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
-          <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=300&h=200&q=80" alt="Face Cream" class="rounded mb-2 w-full object-cover h-48">
-          <h3 class="font-medium text-gray-800">Hydrating Face Cream</h3>
-          <p class="text-sm text-gray-600">₹699</p>
-          <p class="text-yellow-500 text-sm">★★★★☆</p>
-          <button class="mt-2 bg-pink-600 text-white px-3 py-1 rounded add-to-cart" data-id="10" data-name="Hydrating Face Cream" data-price="699" data-image="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=300&q=80">Add to Cart</button>
+    <section class="max-w-7xl mx-auto px-4 py-6 sm:py-10">
+      <div class="mb-6">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">New Arrivals</p>
+        <h2 class="section-title mt-2 text-3xl font-bold text-gray-900">Fresh picks this week</h2>
+      </div>
+      <div id="new-arrivals" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4"></div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 py-6 sm:py-10">
+      <div class="mb-6">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">Best Sellers</p>
+        <h2 class="section-title mt-2 text-3xl font-bold text-gray-900">Loved by shoppers</h2>
+      </div>
+      <div id="best-sellers" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4"></div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 py-6 sm:py-10">
+      <div class="grid gap-5 lg:grid-cols-3">
+        <div class="showcase-card p-5">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">Brand Showcase</p>
+          <h2 class="mt-2 text-2xl font-bold text-gray-900">Trusted labels, handpicked for you</h2>
+          <p class="mt-3 text-sm leading-6 text-gray-600">AJIO Studio, DNMX, Sangria, and other popular labels featured in one place for faster discovery.</p>
         </div>
-
-        <div class="bg-white p-4 rounded shadow hover:shadow-lg transition">
-          <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=300&h=200&q=80" alt="Perfume" class="rounded mb-2 w-full object-cover h-48">
-          <h3 class="font-medium text-gray-800">Rose Perfume</h3>
-          <p class="text-sm text-gray-600">₹1299</p>
-          <p class="text-yellow-500 text-sm">★★★☆☆</p>
-          <button class="mt-2 bg-pink-600 text-white px-3 py-1 rounded add-to-cart" data-id="11" data-name="Rose Perfume" data-price="1299" data-image="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=300&q=80">Add to Cart</button>
+        <div class="showcase-card p-5">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">Customer Love</p>
+          <h3 class="mt-2 text-xl font-semibold text-gray-900">4.8 out of 5 on average</h3>
+          <p class="mt-3 text-sm leading-6 text-gray-600">Shoppers like the clear layout, quick search, and smoother cart flow across devices.</p>
+        </div>
+        <div class="showcase-card p-5">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">Discount Banner</p>
+          <h3 class="mt-2 text-xl font-semibold text-gray-900">End-of-season sale is live</h3>
+          <p class="mt-3 text-sm leading-6 text-gray-600">Explore savings across fashion, beauty, and home essentials before the offer ends.</p>
         </div>
       </div>
     </section>
 
+    <section class="max-w-7xl mx-auto px-4 py-6 sm:py-10">
+      <div class="mb-6 flex items-end justify-between gap-4">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">Testimonials</p>
+          <h2 class="section-title mt-2 text-3xl font-bold text-gray-900">What shoppers say</h2>
+        </div>
+      </div>
+      <div class="grid gap-5 lg:grid-cols-3">
+        <blockquote class="testimonial-card p-5">
+          <p class="text-gray-700">“The filtered browsing feels cleaner and the cart badge updates instantly. Much easier to shop on mobile.”</p>
+          <footer class="mt-4 text-sm font-semibold text-gray-900">Aarav, Mumbai</footer>
+        </blockquote>
+        <blockquote class="testimonial-card p-5">
+          <p class="text-gray-700">“Wishlist hearts and the product cards make it feel more premium while still being simple.”</p>
+          <footer class="mt-4 text-sm font-semibold text-gray-900">Meera, Pune</footer>
+        </blockquote>
+        <blockquote class="testimonial-card p-5">
+          <p class="text-gray-700">“The page loads fast and the sections are easier to scan. The footer also looks much cleaner now.”</p>
+          <footer class="mt-4 text-sm font-semibold text-gray-900">Kabir, Delhi</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 py-6 sm:py-10">
+      <div class="section-shell rounded-3xl p-6 sm:p-8 lg:p-10">
+        <div class="grid gap-6 lg:grid-cols-[1.4fr_0.9fr] lg:items-center">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">Newsletter</p>
+            <h2 class="mt-2 text-3xl font-bold text-gray-900">Get first access to fresh drops and private deals.</h2>
+            <p class="mt-3 max-w-2xl text-sm leading-6 text-gray-600">Subscribe for weekly product highlights, sale reminders, and curated picks for every category.</p>
+          </div>
+          <form class="grid gap-3 sm:grid-cols-[1fr_auto]">
+            <input type="email" class="newsletter-input px-4 py-3 text-sm text-gray-900" placeholder="Enter your email">
+            <button type="submit" class="primary-button rounded-xl bg-gray-900 px-5 py-3 text-sm font-semibold text-white">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
-  
-  <script src="script.js"></script>
 
-  <footer style="background-color: #2c3e50; color: white; padding: 40px; font-family: sans-serif;">
-    <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-      <div>
-        <h3 class="font-bold mb-2">Ajio</h3>
-        <ul style="list-style: none; padding: 0; line-height: 1.8;">
-          <li>Who We Are</li>
-          <li>Join Our Team</li>
-          <li>Terms & Condition</li>
-          <li>We Respect Your Privacy</li>
-        </ul>
+  <footer class="mt-10 bg-gray-900 text-gray-200">
+    <div class="max-w-7xl mx-auto px-4 py-12 sm:py-14">
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <img src="https://assets.ajio.com/static/img/Ajio-Logo.svg" alt="Ajio Logo" class="h-8 brightness-0 invert" loading="lazy">
+          <p class="mt-4 text-sm leading-6 text-gray-400">ShopAjio brings fashion, beauty, and home essentials together in a cleaner, faster browsing experience.</p>
+        </div>
+        <div>
+          <h3 class="text-sm font-semibold uppercase tracking-[0.2em] text-white">About</h3>
+          <ul class="mt-4 space-y-3 text-sm text-gray-400">
+            <li><a class="footer-link" href="#">Who We Are</a></li>
+            <li><a class="footer-link" href="#">Careers</a></li>
+            <li><a class="footer-link" href="#">Sustainability</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-sm font-semibold uppercase tracking-[0.2em] text-white">Help</h3>
+          <ul class="mt-4 space-y-3 text-sm text-gray-400">
+            <li><a class="footer-link" href="#">Contact</a></li>
+            <li><a class="footer-link" href="#">Privacy Policy</a></li>
+            <li><a class="footer-link" href="#">Terms & Conditions</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-sm font-semibold uppercase tracking-[0.2em] text-white">Social</h3>
+          <ul class="mt-4 space-y-3 text-sm text-gray-400">
+            <li><a class="footer-link" href="#">Instagram</a></li>
+            <li><a class="footer-link" href="#">Facebook</a></li>
+            <li><a class="footer-link" href="#">YouTube</a></li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <h3 class="font-bold mb-2">Help</h3>
-        <ul style="list-style: none; padding: 0; line-height: 1.8;">
-          <li>Track Your Order</li>
-          <li>FAQs</li>
-          <li>Returns</li>
-          <li>Customer Service</li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="font-bold mb-2">Shop by</h3>
-        <ul style="list-style: none; padding: 0; line-height: 1.8;">
-          <li>Men</li>
-          <li>Women</li>
-          <li>Kids</li>
-          <li>Home</li>
-        </ul>
-      </div>
+      <div class="mt-10 border-t border-white/10 pt-6 text-sm text-gray-500">© 2026 ShopAjio. All rights reserved.</div>
     </div>
-    <hr style="margin: 40px 0; border-color: #ccc;" />
-    <p style="text-align: center; margin-top: 20px;">© 2023 ShopAjio. All rights reserved.</p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

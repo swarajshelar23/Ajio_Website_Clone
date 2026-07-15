@@ -3,116 +3,178 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shopping Cart</title>
+  <meta name="description" content="Review your cart, adjust quantities, and complete checkout on ShopAjio.">
+  <meta name="keywords" content="ShopAjio cart, shopping cart, checkout">
+  <title>Shopping Cart | ShopAjio</title>
+  <link rel="icon" href="https://assets.ajio.com/static/img/Ajio-Logo.svg">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
-  <!-- Header -->
-  <header class="bg-white shadow">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
-      <a href="onlineshop.html">
-        <img src="https://assets.ajio.com/static/img/Ajio-Logo.svg" alt="Ajio Logo" class="h-8">
-      </a>
-      <h1 class="text-lg font-semibold text-gray-700">Shopping Cart</h1>
-      <a href="onlineshop.html" class="text-blue-500 hover:underline">Continue Shopping</a>
+  <header class="site-header bg-white/95 shadow-sm">
+    <div class="site-header-inner">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between gap-4 py-4">
+          <a href="onlineshop.html" class="shrink-0"><img src="https://assets.ajio.com/static/img/Ajio-Logo.svg" alt="Ajio Logo" class="h-8"></a>
+          <h1 class="text-lg font-semibold text-gray-700">Shopping Cart</h1>
+          <div class="flex items-center gap-3">
+            <a href="contact.html" class="hidden sm:inline-flex nav-pill rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700">Contact</a>
+            <a href="onlineshop.html" class="nav-pill rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700">Continue Shopping</a>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
-  <!-- Cart Section -->
-  <main class="max-w-7xl mx-auto p-6">
-    <h2 class="text-2xl font-bold mb-4">Your Cart</h2>
-    <div id="cart-items" class="bg-white p-4 rounded shadow">
-      <!-- Cart items will be dynamically injected here -->
+  <main class="max-w-7xl mx-auto px-4 py-8 sm:py-10">
+    <div class="mb-6">
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">Cart & Checkout</p>
+      <h2 class="mt-2 text-3xl font-bold text-gray-900">Your Cart</h2>
     </div>
-    <div class="mt-4 flex justify-between items-center">
-      <p id="total-price" class="text-lg font-semibold">Total: ₹0</p>
-      <button id="checkout-button" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Checkout</button>
+
+    <div class="grid gap-6 lg:grid-cols-[1.4fr_0.9fr]">
+      <section class="section-shell rounded-3xl p-5 sm:p-6">
+        <div id="cart-items" class="space-y-4"></div>
+        <div id="empty-cart" class="hidden rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-6 text-center text-gray-600">Your cart is empty.</div>
+      </section>
+
+      <aside class="section-shell rounded-3xl p-5 sm:p-6 h-fit">
+        <h3 class="text-xl font-bold text-gray-900">Order Summary</h3>
+        <div class="mt-4 space-y-3 text-sm text-gray-700">
+          <div class="flex items-center justify-between"><span>Subtotal</span><span id="subtotal-price">₹0</span></div>
+          <div class="flex items-center justify-between"><span>Discount</span><span id="discount-price">-₹0</span></div>
+          <div class="flex items-center justify-between"><span>Shipping</span><span id="shipping-price">₹0</span></div>
+          <div class="flex items-center justify-between border-t pt-3 text-base font-bold text-gray-900"><span>Grand Total</span><span id="grand-total">₹0</span></div>
+        </div>
+        <button id="checkout-button" class="primary-button mt-5 w-full rounded-xl bg-green-600 px-4 py-3 text-sm font-semibold text-white">Checkout</button>
+        <div id="bill" class="mt-5 rounded-2xl bg-gray-50 p-4"></div>
+      </aside>
     </div>
   </main>
 
   <script>
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const CART_KEY = 'cart';
+    const cartItemsContainer = document.getElementById('cart-items');
+    const emptyCart = document.getElementById('empty-cart');
+    const subtotalPrice = document.getElementById('subtotal-price');
+    const discountPrice = document.getElementById('discount-price');
+    const shippingPrice = document.getElementById('shipping-price');
+    const grandTotal = document.getElementById('grand-total');
+    const billContainer = document.getElementById('bill');
 
-    const renderCart = () => {
-      const cartItemsContainer = document.getElementById('cart-items');
-      const totalPriceElement = document.getElementById('total-price');
-      cartItemsContainer.innerHTML = '';
+    const getCart = () => {
+      try {
+        return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+      } catch {
+        return [];
+      }
+    };
 
-      if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
-        totalPriceElement.textContent = 'Total: ₹0';
+    const saveCart = (cart) => localStorage.setItem(CART_KEY, JSON.stringify(cart));
+
+    const formatCurrency = (value) => `₹${value}`;
+
+    const calculateTotals = (cart) => {
+      const subtotal = cart.reduce((total, item) => total + (Number(item.price) * (item.quantity || 1)), 0);
+      const discount = Math.round(subtotal * 0.1);
+      const shipping = subtotal > 0 ? (subtotal >= 1999 ? 0 : 99) : 0;
+      const grand = subtotal - discount + shipping;
+      return { subtotal, discount, shipping, grand };
+    };
+
+    const renderSummary = () => {
+      const cart = getCart();
+      const totals = calculateTotals(cart);
+
+      subtotalPrice.textContent = formatCurrency(totals.subtotal);
+      discountPrice.textContent = `-₹${totals.discount}`;
+      shippingPrice.textContent = totals.shipping === 0 ? 'Free' : formatCurrency(totals.shipping);
+      grandTotal.textContent = formatCurrency(totals.grand);
+
+      if (!cart.length) {
+        emptyCart.classList.remove('hidden');
+        cartItemsContainer.innerHTML = '';
+        billContainer.innerHTML = '<p class="text-sm text-gray-600">Add items to see your bill summary here.</p>';
         return;
       }
 
-      let total = 0;
-
-      cart.forEach((item, index) => {
-        total += item.price;
-
-        const cartItem = document.createElement('div');
-        cartItem.className = 'flex justify-between items-center border-b py-2';
-
-        cartItem.innerHTML = `
-          <div class="flex items-center space-x-4">
-            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
+      emptyCart.classList.add('hidden');
+      cartItemsContainer.innerHTML = cart.map((item, index) => `
+        <article class="flex flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
+          <div class="flex items-center gap-4">
+            <img src="${item.image}" alt="${item.name}" class="h-20 w-20 rounded-xl object-cover" loading="lazy">
             <div>
-              <h3 class="text-lg font-semibold">${item.name}</h3>
-              <p class="text-gray-600">₹${item.price}</p>
+              <p class="text-xs uppercase tracking-[0.2em] text-gray-500">${item.brand || 'ShopAjio'}</p>
+              <h3 class="text-lg font-semibold text-gray-900">${item.name}</h3>
+              <p class="text-sm text-gray-600">${formatCurrency(Number(item.price))}</p>
             </div>
           </div>
-          <button class="text-red-500 hover:underline remove-item" data-index="${index}">Remove</button>
-        `;
+          <div class="flex flex-wrap items-center gap-3 sm:justify-end">
+            <div class="flex items-center rounded-full border border-gray-200 bg-gray-50">
+              <button class="px-3 py-2 text-gray-700" data-action="decrease" data-index="${index}" aria-label="Decrease quantity">-</button>
+              <span class="min-w-10 px-3 text-center text-sm font-semibold text-gray-900">${item.quantity || 1}</span>
+              <button class="px-3 py-2 text-gray-700" data-action="increase" data-index="${index}" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="rounded-full border border-red-200 px-4 py-2 text-sm font-semibold text-red-600" data-action="remove" data-index="${index}">Remove</button>
+          </div>
+        </article>
+      `).join('');
 
-        cartItemsContainer.appendChild(cartItem);
-      });
-
-      totalPriceElement.textContent = `Total: ₹${total}`;
+      billContainer.innerHTML = `
+        <div class="space-y-2 text-sm text-gray-700">
+          <div class="flex items-center justify-between"><span>Subtotal</span><span>${formatCurrency(totals.subtotal)}</span></div>
+          <div class="flex items-center justify-between"><span>Discount</span><span>-₹${totals.discount}</span></div>
+          <div class="flex items-center justify-between"><span>Shipping</span><span>${totals.shipping === 0 ? 'Free' : formatCurrency(totals.shipping)}</span></div>
+          <div class="flex items-center justify-between border-t pt-2 text-base font-bold text-gray-900"><span>Grand Total</span><span>${formatCurrency(totals.grand)}</span></div>
+        </div>
+      `;
     };
 
-    document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('remove-item')) {
-        const index = parseInt(e.target.dataset.index);
-        cart.splice(index, 1);
-        localStorage.setItem('cart', JSON.stringify(cart));
-        renderCart();
+    document.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-action]');
+      if (!button) {
+        return;
       }
+
+      const cart = getCart();
+      const index = Number(button.dataset.index);
+      const action = button.dataset.action;
+      const item = cart[index];
+
+      if (!item) {
+        return;
+      }
+
+      if (action === 'increase') {
+        item.quantity = (item.quantity || 1) + 1;
+      }
+
+      if (action === 'decrease') {
+        item.quantity = (item.quantity || 1) - 1;
+        if (item.quantity <= 0) {
+          cart.splice(index, 1);
+        }
+      }
+
+      if (action === 'remove') {
+        cart.splice(index, 1);
+      }
+
+      saveCart(cart);
+      renderSummary();
     });
+
     document.getElementById('checkout-button').addEventListener('click', () => {
-  const billContainer = document.getElementById('bill');
-  billContainer.innerHTML = '';
+      const cart = getCart();
+      if (!cart.length) {
+        billContainer.innerHTML = '<p class="text-sm font-semibold text-red-600">Cart is empty. Please add items before checkout.</p>';
+        return;
+      }
 
-  if (cart.length === 0) {
-    billContainer.innerHTML = '<p class="text-red-500 font-semibold">Cart is empty. Please add items before checkout.</p>';
-    return;
-  }
+      billContainer.innerHTML = '<p class="text-sm font-semibold text-green-700">Thank you for shopping with us. Your checkout summary is ready.</p>';
+    });
 
-  let total = 0;
-  let billHTML = `
-    <h3 class="text-xl font-bold mb-2">Bill Summary</h3>
-    <ul class="mb-4 space-y-1">
-  `;
-
-  cart.forEach((item) => {
-    billHTML += `<li class="flex justify-between text-gray-700"><span>${item.name}</span><span>₹${item.price}</span></li>`;
-    total += item.price;
-  });
-
-  billHTML += `</ul>
-    <div class="flex justify-between font-semibold border-t pt-2">
-      <span>Total</span><span>₹${total}</span>
-    </div>
-    <p class="mt-4 text-green-600 font-medium">Thank you for shopping with us!</p>
-  `;
-
-  billContainer.innerHTML = billHTML;
-});
-
-
-    renderCart();
-</script>
-<!-- Bill summary will appear here -->
-<div id="bill" class="bg-white p-4 mt-6 rounded shadow"></div>
-
+    renderSummary();
+  </script>
 </body>
 </html>

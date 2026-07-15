@@ -2,36 +2,103 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login - ShopAjio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Log in to ShopAjio to access your saved cart, wishlist, and account details.">
+  <meta name="keywords" content="ShopAjio login, sign in, shopping account">
+  <title>Login | ShopAjio</title>
+  <link rel="icon" href="https://assets.ajio.com/static/img/Ajio-Logo.svg">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link href="style.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-  <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
-    <h2 class="text-2xl font-bold text-center mb-6">Login to Your Account</h2>
-    <form id="loginForm">
-      <input type="email" id="email" placeholder="Email" required class="w-full border border-gray-300 rounded px-4 py-2 mb-4"/>
-      <input type="password" id="password" placeholder="Password" required class="w-full border border-gray-300 rounded px-4 py-2 mb-4"/>
-      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Login</button>
-    </form>
-    <p class="text-center text-sm text-gray-600 mt-4">
-      New user? <a href="register.html" class="text-blue-500 hover:underline">Register</a>
-    </p>
-  </div>
+<body class="bg-gray-100">
+  <header class="site-header bg-white/95 shadow-sm">
+    <div class="site-header-inner">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between gap-4 py-4">
+          <a href="onlineshop.html" class="shrink-0"><img src="https://assets.ajio.com/static/img/Ajio-Logo.svg" alt="Ajio Logo" class="h-8"></a>
+          <a href="register.html" class="nav-pill hidden sm:inline-flex rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700">Register</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-rose-50">
+    <section class="max-w-7xl mx-auto px-4 py-10 sm:py-14">
+      <div class="grid gap-8 lg:grid-cols-2 lg:items-center">
+        <div class="space-y-5">
+          <span class="inline-flex rounded-full bg-rose-100 px-4 py-2 text-sm font-semibold text-rose-700">Welcome back</span>
+          <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">Sign in to continue shopping without losing your cart.</h1>
+          <p class="max-w-xl text-base leading-7 text-gray-600">Use the same details you saved during registration to access your account and wishlist.</p>
+        </div>
+
+        <div class="section-shell rounded-3xl p-6 sm:p-8">
+          <h2 class="text-2xl font-bold text-gray-900">Login to Your Account</h2>
+          <p class="mt-2 text-sm text-gray-600">Enter your registered email and password.</p>
+
+          <div id="loginMessage" class="mt-4 hidden rounded-xl px-4 py-3 text-sm font-medium"></div>
+
+          <form id="loginForm" class="mt-6 space-y-4" novalidate>
+            <div>
+              <label for="email" class="mb-2 block text-sm font-semibold text-gray-700">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="Email" class="filter-select w-full px-4 py-3 text-sm text-gray-900" />
+            </div>
+            <div>
+              <label for="password" class="mb-2 block text-sm font-semibold text-gray-700">Password</label>
+              <input type="password" id="password" name="password" autocomplete="current-password" placeholder="Password" class="filter-select w-full px-4 py-3 text-sm text-gray-900" />
+            </div>
+            <button type="submit" class="primary-button w-full rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white">Login</button>
+          </form>
+
+          <p class="mt-4 text-center text-sm text-gray-600">New user? <a href="register.html" class="font-semibold text-blue-600 hover:underline">Register</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <script>
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const email = document.getElementById('email').value;
+    const loginForm = document.getElementById('loginForm');
+    const loginMessage = document.getElementById('loginMessage');
+
+    const showLoginMessage = (message, type) => {
+      loginMessage.textContent = message;
+      loginMessage.className = `mt-4 rounded-xl px-4 py-3 text-sm font-medium ${type === 'success' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`;
+      loginMessage.classList.remove('hidden');
+    };
+
+    const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+    loginForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const email = document.getElementById('email').value.trim();
       const password = document.getElementById('password').value;
 
-      const storedUser = JSON.parse(localStorage.getItem('user'));
-      if (storedUser && storedUser.email === email && storedUser.password === password) {
-        alert('Login successful!');
-        window.location.href = 'onlineshop.html';
-      } else {
-        alert('Invalid credentials.');
+      if (!email || !password) {
+        showLoginMessage('Please fill in both fields.', 'error');
+        return;
       }
+
+      if (!isValidEmail(email)) {
+        showLoginMessage('Enter a valid email address.', 'error');
+        return;
+      }
+
+      if (password.length < 8) {
+        showLoginMessage('Password must be at least 8 characters.', 'error');
+        return;
+      }
+
+      const storedUser = JSON.parse(localStorage.getItem('user'));
+
+      if (storedUser && storedUser.email === email && storedUser.password === password) {
+        showLoginMessage('Login successful. Redirecting to home...', 'success');
+        setTimeout(() => {
+          window.location.href = 'onlineshop.html';
+        }, 900);
+        return;
+      }
+
+      showLoginMessage('Invalid credentials. Please try again.', 'error');
     });
   </script>
 </body>
