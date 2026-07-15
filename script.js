@@ -317,25 +317,7 @@ const setupProductActions = () => {
   });
 };
 
-const showLoggedInUser = () => {
-  const userBanner = document.getElementById('welcome-banner');
-  if (!userBanner) {
-    return;
-  }
 
-  const storedUser = getJson(STORAGE_KEYS.user, null);
-  if (!storedUser || !storedUser.name) {
-    return;
-  }
-
-  userBanner.innerHTML = `
-    <div class="max-w-7xl mx-auto px-4 pt-4">
-      <div class="section-shell rounded-2xl px-4 py-3 text-sm text-gray-700">
-        Welcome back, <strong>${storedUser.name}</strong>.
-      </div>
-    </div>
-  `;
-};
 
 const injectLegacyPageEnhancements = () => {
   const pathname = window.location.pathname.split('/').pop().toLowerCase();
