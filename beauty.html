@@ -6,6 +6,7 @@
   <title>AJIO - BEAUTY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-N1NHJXN429"></script>
 <script>
@@ -88,12 +89,29 @@
           </div>
         </div>
       </header>
-  <header class="bg-white shadow p-4">
-    <h1 class="text-2xl font-bold text-gray-800">AJIO - BEAUTY</h1>
-  </header>
-  <div class="flex">
-   
-  <main class="p-6">
+
+  <section class="hero-banner">
+      <div class="max-w-7xl mx-auto px-4 py-10 sm:py-12">
+        <div class="grid gap-8 lg:grid-cols-2 lg:items-center">
+          <div class="space-y-5">
+            <span class="inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">Beauty Collection</span>
+            <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">Keep the same CTA flow across every category.</h1>
+            <p class="max-w-2xl text-base leading-7 text-gray-600">Shop makeup, skincare, and fragrance with a hero section that now matches the men’s page pattern.</p>
+            <div class="flex flex-wrap gap-3">
+              <a href="#products" class="primary-button rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white">Shop Beauty</a>
+              <a href="contact.html" class="secondary-button rounded-full border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-700">Need Help?</a>
+            </div>
+          </div>
+          <div class="hero-image-shell rounded-3xl p-4 sm:p-6">
+            <div class="overflow-hidden rounded-3xl bg-white shadow-2xl">
+              <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1400&q=80" alt="Beauty banner" class="h-[300px] w-full object-cover sm:h-[380px]" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <main id="products" class="p-6">
     <h2 class="text-xl font-semibold mb-4 text-gray-700">Best in Beauty</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       
